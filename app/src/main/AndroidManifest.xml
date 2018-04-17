@@ -13,11 +13,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.udacity.nanodegree.blooddonation.ui.home.HomeActivity">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key"/>
+
+        <activity
+            android:name="com.udacity.nanodegree.blooddonation.ui.home.HomeActivity"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name="com.udacity.nanodegree.blooddonation.ui.splash.SplashScreenActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name="com.udacity.nanodegree.blooddonation.ui.splash.SplashScreenActivity"
+            android:theme="@style/AppTheme.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

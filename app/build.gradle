@@ -1,41 +1,61 @@
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion buildConfig.compileSdk
-  defaultConfig {
-    applicationId "com.udacity.nanodegree.blooddonation"
-    minSdkVersion buildConfig.minSdk
-    targetSdkVersion buildConfig.targetSdk
-    versionCode buildConfig.version.code
-    versionName buildConfig.version.name
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-  }
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    compileSdkVersion buildConfig.compileSdk
+
+    defaultConfig {
+        applicationId "com.udacity.nanodegree.blooddonation"
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+        versionCode buildConfig.version.code
+        versionName buildConfig.version.name
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary = true
+
+        resValue('string', "google_maps_key", propOrThrow('GOOGLE_MAPS_API_KEY'))
     }
-  }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        textReport true
+        textOutput 'stdout'
+        lintConfig rootProject.file('lint.xml')
+        checkReleaseBuilds false
+    }
 }
 
 dependencies {
-  implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-  // Support lib
-  implementation deps.android.support.appcompatV7
+    // Android Support Libray
+    implementation deps.android.support.appcompatV7
+    implementation deps.android.support.supportV4
+    implementation deps.android.support.design
 
-  // Constraint layout
-  implementation deps.android.support.constraintLayout
+    // Constraint Layout
+    implementation deps.android.support.constraintLayout
 
-  // Firebase Auth
-  implementation deps.google.firebase.auth
+    // Firebase Auth
+    implementation deps.google.firebase.auth
 
-  // Lear canary
-  debugImplementation deps.square.leackcanary.debug
-  releaseImplementation deps.square.leackcanary.release
+    // Google Mobile Services
+    implementation deps.google.android.gms.playServicesMaps
 
-  testImplementation deps.junit
+    // Leak Canary
+    implementation 'com.android.support:support-v4:27.1.1'
+    debugImplementation deps.square.leackcanary.debug
+    releaseImplementation deps.square.leackcanary.release
 
-  androidTestImplementation deps.android.support.test.runner
-  androidTestImplementation deps.android.support.test.espressoCore
+    // Test
+    testImplementation deps.junit
+
+    androidTestImplementation deps.android.support.test.runner
+    androidTestImplementation deps.android.support.test.espressoCore
 }

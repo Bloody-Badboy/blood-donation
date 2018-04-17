@@ -8,7 +8,8 @@ buildscript {
             'firebase'        : '12.0.1',
             'testRunner'      : '1.0.1',
             'espressoCore'    : '3.0.1',
-            'leak_canary'     :  '1.5.4'
+            'leak_canary'     : '1.5.4',
+            'gms'             : '12.0.1'
     ]
 
 
@@ -48,6 +49,9 @@ buildscript {
                             'appcompatV7'     : "com.android.support:appcompat-v7:${versions.supportLibrary}",
                             'annotations'     : "com.android.support:support-annotations:${versions.supportLibrary}",
                             'constraintLayout': "com.android.support.constraint:constraint-layout:${versions.constraintLayout}",
+                            'supportV4'       : "com.android.support:support-v4:${versions.constraintLayout}",
+                            'design'          : "com.android.support:design:${versions.constraintLayout}",
+
                             'test'            : [
                                     'runner'      : "com.android.support.test:runner:${versions.testRunner}",
                                     'espressoCore': "com.android.support.test.espresso:espresso-core:${versions.espressoCore}"
@@ -58,14 +62,20 @@ buildscript {
             'google' : [
                     'firebase': [
                             'auth': "com.google.firebase:firebase-auth:${versions.firebase}"
+                    ],
+                    'android' : [
+                            'gms': [
+                                    'playServicesMaps': "com.google.android.gms:play-services-maps:${versions.gms}"
+                            ]
                     ]
+
             ],
 
-            'square':[
-                'leackcanary':[
-                    'debug':"com.squareup.leakcanary:leakcanary-android:${versions.leak_canary}",
-                    'release':"com.squareup.leakcanary:leakcanary-android-no-op:${versions.leak_canary}"
-                ]
+            'square' : [
+                    'leackcanary': [
+                            'debug'  : "com.squareup.leakcanary:leakcanary-android:${versions.leak_canary}",
+                            'release': "com.squareup.leakcanary:leakcanary-android-no-op:${versions.leak_canary}"
+                    ]
             ],
 
             'junit'  : 'junit:junit:4.12'
@@ -101,4 +111,11 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+def propOrThrow(String name) {
+    if (hasProperty(name))
+        return getProperty(name)
+    else
+        throw new GradleException("Can't find property value for given key `$name`")
 }

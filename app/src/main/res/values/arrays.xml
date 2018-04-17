@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="blood_groups">
+        <item>O+</item>
+        <item>O-</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+    </array>
+    <array name="demo_states">
+        <item>State 1</item>
+        <item>State 2</item>
+        <item>State 3</item>
+        <item>State 4</item>
+        <item>State 5</item>
+    </array>
+
+    <array name="demo_city">
+        <item>City 1</item>
+        <item>City 2</item>
+        <item>City 3</item>
+        <item>City 4</item>
+        <item>City 5</item>
+    </array>
+</resources>
